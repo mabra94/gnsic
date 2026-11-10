@@ -18,8 +18,8 @@ dockers:
     ids:
       - gnsic
     image_templates:
-      - &amd64_latest_image "ghcr.io/karimra/gnsic:latest-amd64"
-      - &amd64_versioned_image 'ghcr.io/karimra/gnsic:{{ replace .Version "v" ""}}-amd64'
+      - &amd64_latest_image "ghcr.io/mabra94/gnsic:latest-amd64"
+      - &amd64_versioned_image 'ghcr.io/mabra94/gnsic:{{ replace .Version "v" ""}}-amd64'
     dockerfile: goreleaser-alpine.dockerfile
     skip_push: false
     use: buildx
@@ -30,8 +30,8 @@ dockers:
     ids:
       - gnsic
     image_templates:
-      - &arm64_latest_image "ghcr.io/karimra/gnsic:latest-arm64"
-      - &arm64_versioned_image 'ghcr.io/karimra/gnsic:{{ replace .Version "v" ""}}-arm64'
+      - &arm64_latest_image "ghcr.io/mabra94/gnsic:latest-arm64"
+      - &arm64_versioned_image 'ghcr.io/mabra94/gnsic:{{ replace .Version "v" ""}}-arm64'
     dockerfile: goreleaser-alpine.dockerfile
     skip_push: false
     use: buildx
@@ -42,16 +42,16 @@ dockers:
     ids:
       - gnsic
     image_templates:
-      - "ghcr.io/karimra/gnsic:latest-scratch"
-      - 'ghcr.io/karimra/gnsic:{{ replace .Version "v" ""}}-scratch'
+      - "ghcr.io/mabra94/gnsic:latest-scratch"
+      - 'ghcr.io/mabra94/gnsic:{{ replace .Version "v" ""}}-scratch'
     dockerfile: goreleaser-scratch.dockerfile
     skip_push: false
 docker_manifests:
-  - name_template: 'ghcr.io/karimra/gnsic:{{ replace .Version "v" "" }}'
+  - name_template: 'ghcr.io/mabra94/gnsic:{{ replace .Version "v" "" }}'
     image_templates:
       - *amd64_versioned_image
       - *arm64_versioned_image
-  - name_template: "{{- if not .IsSnapshot}}ghcr.io/karimra/gnsic:latest{{- end}}"
+  - name_template: "{{- if not .IsSnapshot}}ghcr.io/mabra94/gnsic:latest{{- end}}"
     image_templates:
       - *amd64_latest_image
       - *arm64_latest_image
