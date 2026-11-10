@@ -458,7 +458,6 @@ func (a *App) certzRotateWithGenerateCertificateCanGenerateCSR(ctx context.Conte
 			certzapi.Certificate(
 				certzapi.CertificateType_X509(),
 				certzapi.CertificateEncoding_PEM(),
-				certzapi.CertificateBytes(certPEM),    // deprecated field, kept for compatibility
 				certzapi.CertificateRawBytes(certPEM), // raw_certificate oneof
 			),
 		),
@@ -502,7 +501,6 @@ func (a *App) certzRotateWithGenerateCertificateCannotGenerateCSR(ctx context.Co
 			certzapi.Certificate(
 				certzapi.CertificateType_X509(),
 				certzapi.CertificateEncoding_PEM(),
-				certzapi.CertificateBytes(certPEM),
 				certzapi.CertificateRawBytes(certPEM),
 				certzapi.PrivateKeyBytes(keyPEM),              // deprecated field, kept for compatibility
 				certzapi.PrivateKeyType_RawPrivateKey(keyPEM), // raw_private_key oneof
@@ -560,7 +558,6 @@ func (a *App) buildPreGeneratedCertEntityOpt(createdOn time.Time) (api.GNSIOptio
 		certOpts := []api.GNSIOption{
 			certzapi.CertificateType_X509(),
 			certzapi.CertificateEncoding_PEM(),
-			certzapi.CertificateBytes(certBytes),
 			certzapi.CertificateRawBytes(certBytes),
 		}
 		if i < len(keys) && keys[i] != "" {
@@ -836,7 +833,6 @@ func (a *App) buildExtraEntityOpts(createdOn time.Time) ([]api.GNSIOption, error
 				certzapi.Certificate(
 					certzapi.CertificateType_X509(),
 					certzapi.CertificateEncoding_PEM(),
-					certzapi.CertificateBytes(b),
 					certzapi.CertificateRawBytes(b),
 				),
 			),
